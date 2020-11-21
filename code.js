@@ -1,5 +1,8 @@
 $(document).ready(function ()
     {
+
+        $("button").click(loanCalculator);
+
             var myRules = {
                 amount: {
                     required: true
@@ -72,7 +75,7 @@ $(document).ready(function ()
 
                 var loan = (amount * (apr / 100) / 12).toFixed(2);
 
-                
+
                 if ( score > 300)
                 {
                     loan = "Your loan application is denied"
