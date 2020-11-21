@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+            integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.2/dist/jquery.validate.js"></script>
+    <script src="code.js"></script>
+
+</head>
+<body>
+<form>
+<h1>Loan Application</h1>
+
+    <table>
+        <tr><th>Loan Calculator</th></tr>
+        <tr><td>Enter Amount ($):</td></tr>
+        <td><input id="amount" onchange="calculate();"></td>
+        <br>
+        <tr><td>Interest Rate (%)</td></tr>
+        <td><input id="apr" onchange="calculate();"></td>
+        <br>
+        <tr><td>Credit Score</td></tr>
+        <td><input id="score" onchange="calculate();"></td>
+        <br>
+        <tr><td>Enter Salary</td></tr>
+        <td><input id="salary" onchange="calculate();"></td>
+        <br>
+        <tr><td>Job History</td></tr>
+        <td><input id="history" onchange="calculate();"></td>
+        <br>
+        <tr><th>Payment</th></tr>
+        <td><button onclick="calculate();">Calculate</button> </td>
+    </table>
+</form>
+</body>
+</html>
