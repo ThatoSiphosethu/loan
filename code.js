@@ -1,63 +1,7 @@
 $(document).ready(function ()
     {
 
-        $("button").click(loanCalculator);
 
-            var myRules = {
-                amount: {
-                    required: true
-                },
-
-                apr: {
-                    required: true,
-                    digits: true,
-                    min: 2,
-                    max:6
-                },
-
-                score: {
-                    required: true,
-                    digits: true,
-                    min: 300,
-                    max: 850
-                },
-
-                salary: {
-                    required: true,
-                    digits: true,
-                    min: 2000,
-                    max: 40000
-                },
-
-                history: {
-                    required: true,
-                    digits: true,
-                    min: 1,
-                    max: 12
-                }
-            };
-
-            var myMessages = {
-                amount: {
-                    required : "Amount requested"
-                },
-
-                apr: {
-                    required : "Annual Interest rate"
-                },
-
-                score: {
-                    required : "Your credit score"
-                },
-
-                salary: {
-                    required : "Your annual salary"
-                },
-
-                history: {
-                    required : "Months on the job"
-                }
-            }
 
             function loanCalculator() {
 
@@ -76,15 +20,38 @@ $(document).ready(function ()
                 var loan = (amount * (apr / 100) / 12).toFixed(2);
 
 
-                if ( score > 300)
+                if (amount >= 40000 && score >= 600)
                 {
-                    loan = "Your loan application is denied"
+                    alert ("Your loan application is approved")
                 }
 
-                else if (score > 800)
+                else if (amount >= 40000 && score < 600 && history > 12)
                 {
-                    loan = "Your loan is approved"
+                    alert ("Your loan application is approved")
                 }
+
+                else if (amount >= 40000 && score < 600 && history < 12)
+                {
+                    alert ("Your loan is denied")
+                }
+
+                else if (amount < 40000 && score < 600)
+                {
+                    alert ("Your loan is denied")
+                }
+
+                else if (amount < 40000 && score < 600 && history > 12)
+                {
+                    alert ("Your loan application is approved")
+                }
+
+                else {
+                    alert ("Your loan is denied")
+                }
+                $("#loan").text(loan.toFixed(2));
+
+                $("p").show();
+
 
             }
 

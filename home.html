@@ -7,8 +7,11 @@
             integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
             crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.2/dist/jquery.validate.js"></script>
-    <script src="code.js"></script>
 
+
+    <style>
+     p{display: none}
+    </style>
 </head>
 <body>
 <form>
@@ -17,23 +20,93 @@
     <table>
         <tr><th>Loan Calculator</th></tr>
         <tr><td>Enter Amount ($):</td></tr>
-        <td><input id="amount" onchange="calculate();"></td>
+        <td><input type="number" id="amount" required></td>
         <br>
         <tr><td>Interest Rate (%)</td></tr>
-        <td><input id="apr" onchange="calculate();"></td>
+        <td><input type="number" id="apr" required></td>
         <br>
         <tr><td>Credit Score</td></tr>
-        <td><input id="score" onchange="calculate();"></td>
+        <td><input type="number" id="score" required></td>
         <br>
         <tr><td>Enter Salary</td></tr>
-        <td><input id="salary" onchange="calculate();"></td>
+        <td><input type="number" id="salary" required></td>
         <br>
         <tr><td>Job History</td></tr>
-        <td><input id="history" onchange="calculate();"></td>
+        <td><input type="number" id="history" required></td>
         <br>
         <tr><th>Payment</th></tr>
-        <td><button onclick="calculate();">Calculate</button> </td>
+        <td><button onclick="validateForm();">Calculate</button> </td>
     </table>
+
 </form>
+<script>
+    function validateForm() {
+        var amount = $("#amount").val();
+        amount = parseFloat(amount);
+
+        var apr = $("#apr").val();
+        apr = parseFloat(apr);
+
+        var salary = $("#salary").val();
+        salary = parseFloat(salary);
+
+        var score = $("#score").val();
+        score = parseFloat(score);
+
+        var history = $("#history").val();
+        history = parseFloat(history);
+
+        if (amount == "") {
+            alert("All fields must be filled out");
+            return false;
+        }
+        else if (apr == "") {
+            alert("All fields must be filled out");
+            return false;
+        }
+
+        else if (score < 300 || score > 850) {
+            alert("Input correct credit score");
+            return false;
+        }
+        else if (history < 0 )
+        {
+            alert("Please verify number of worked months");
+            return false;
+        }
+
+        else loanCalculator();
+    }
+
+    function loanCalculator() {
+
+        var salary = $("#salary").val();
+        salary = parseFloat(salary);
+
+        var score = $("#score").val();
+        score = parseFloat(score);
+
+        var history = $("#history").val();
+        history = parseFloat(history);
+
+
+        var loan = (amount * (apr / 100) / 12).toFixed(2);
+
+
+        if (salary >= 40000 && score >= 600) {
+            alert("Your loan application is approved")
+        } else if (salary >= 40000 && score < 600 && history > 12) {
+            alert("Your loan application is approved")
+        } else if (salary >= 40000 && score < 600 && history < 12) {
+            alert("Your loan is denied")
+        } else if (salary < 40000 && score < 600) {
+            alert("Your loan is denied")
+        } else if (salary < 40000 && score < 600 && history > 12) {
+            alert("Your loan application is approved")
+        } else if (salary < 40000 && score < 600 && history < 12) {
+            alert("Your loan is denied")
+        }
+    }
+</script>
 </body>
 </html>
